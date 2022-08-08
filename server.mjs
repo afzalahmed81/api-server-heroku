@@ -23,10 +23,10 @@ app.post('/user', (req,res) => {
     res.send('user is Created')
 })
 
-app.get('/users', (req,res) => {
+app.get('/user', (req,res) => {
     res.send(users)
 })
-app.put("/user", (req, res) => {
+app.put('/user', (req, res) => {
     res.send("your user is modified");
 })
 
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 app.get('/profile', (req, res) => {
     console.log("a request on server profile page");
-    res.send('this is a profile!')
+    res.send('this is a profile!');
 })
 
 app.listen(port, () => {
