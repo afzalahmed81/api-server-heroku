@@ -7,9 +7,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client App for API testing</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+       body {
+            background-color:darkgray;
+        }
+        .container {
+            background-color: darkkhaki;
+            border: 2px solid green;
+            border-radius: 15px;
+            width: 50%;
+            margin: auto;
+            height: auto;
+            text-align: center;
+        }
+        form {
+           margin: auto;
+           padding-top: 45px;
+            border: 2px solid brown;
+            border-radius: 20px;
+            background-color: burlywood;
+            width: 70%;
+            height:200px;
+
+        }
+        form > button {
+            margin-top: 30px;
+            width: 90px;
+            height: 25px;
+            background-color: coral;
+            border-radius: 5px;
+        }
+        input {
+            margin: 5px;
+            border-radius: 5px;
+            height: 35;
+        }
+        .gt-data {
+            /* margin-top: 20px !important; */
+            /* margin: 20px 50px 50px 50px !important; */
+            margin-top: 0px
+            width: 120px;
+            height: 35px;
+            background-color: rgb(196, 47, 47);
+            border-radius: 5px;
+
+        }
+        #allUserList {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:space-around;
+            color: beige;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
     <h1>Sign Up Form</h1>
     <form onsubmit="signup(); return false">
         <label for="fullname">Full Name</label>
@@ -31,8 +85,9 @@
     <br>
     <br>
     <br>
-    <button onclick="getAllUsers()">Get All Users</button>
+    <button class="gt-data" onclick="getAllUsers()">Get All Users</button>
     <p id="allUserList"></p>
+</div>
 
     <script>
         function signup() {
@@ -62,9 +117,11 @@
             axios.get("https://api-server-heroku.herokuapp.com/user")
                 .then(function (response) {
                     console.log(response.data);
+                    document.querySelector('#allUserList').innerHTML="";
                     response.data.map(eachUser => {
-                        document.querySelector('#allUserList').innerHTML += `<br> ${eachUser.fullname} <br/> 
-                        ${eachUser.username} ${eachUser.password} <br>`;
+                        
+                        document.querySelector('#allUserList').innerHTML += `<br>Name: ${eachUser.fullname} <br/> 
+                       Username: ${eachUser.username}<br/>Password: ${eachUser.password} <br>`;
                     })
                 })
         }
